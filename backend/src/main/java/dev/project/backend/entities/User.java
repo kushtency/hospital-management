@@ -21,17 +21,27 @@ public class User implements UserDetails {
     private String password;
     @Column(name ="sex")
     private String sex;
+    @Column(name = "age")
+    private int age;
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    // mapping
+    @OneToOne(mappedBy = "userPatient", cascade = CascadeType.ALL)
+    private Patient patient;
+
+    @OneToOne(mappedBy = "userPhysician", cascade = CascadeType.ALL)
+    private Physician physician;
+
     public User() {}
 
-    public User(String emailID, String name, String password, String sex, String role) {
+    public User(String emailID, String name, String password, String sex, String role, int age) {
         this.emailID = emailID;
         this.name = name;
         this.password = password;
         this.sex = sex;
         this.role = Role.valueOf(role);
+        this.age = age;
     }
 
     public Long getUserID() {
@@ -76,6 +86,22 @@ public class User implements UserDetails {
 
     public void setRole(String role) {
         this.role = Role.valueOf("ROLE_"+role.trim().toUpperCase());
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public void setPhysician(Physician physician) {
+        this.physician = physician;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override

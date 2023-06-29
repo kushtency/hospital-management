@@ -1,9 +1,6 @@
 package dev.project.backend.controller.publicController;
 
-import dev.project.backend.dto.LoginCredentials;
-import dev.project.backend.dto.Message;
-import dev.project.backend.dto.Send;
-import dev.project.backend.dto.UserDetails;
+import dev.project.backend.dto.*;
 import dev.project.backend.entities.User;
 import dev.project.backend.service.UserService;
 import org.apache.coyote.Response;
@@ -27,7 +24,7 @@ public class RegisterAPI {
         this.userService = userService;
     }
     @PostMapping("register/")
-    public ResponseEntity<Map<String, Object>> registerUser(@RequestBody User user){
+    public ResponseEntity<Map<String, Object>> registerUser(@RequestBody CombinedInfo user){
         var res = new HashMap<String, Object>();
         System.out.println(user);
         Message message = userService.createUser(user);
