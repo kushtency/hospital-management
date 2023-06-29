@@ -4,17 +4,19 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 
 @Entity
+@Table(name="patient_record")
 public class PatientRecord {
 
 	@Id
-	@GeneratedValue(generator = "rec_seq")
-	@SequenceGenerator(name = "rec_seq", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int record_id;
 	@OneToMany
 	private List<Vital> vitalList;
@@ -22,6 +24,17 @@ public class PatientRecord {
 	private List<Medication> medicationList;
 	@OneToMany
 	private List<Problems> problemsList;
+	@OneToOne
+	private Physician physician;
+	
+	
+	public Physician getPhysician() {
+		return physician;
+	}
+
+	public void setPhysician(Physician physician) {
+		this.physician = physician;
+	}
 
 	public int getRecord_id() {
 		return record_id;

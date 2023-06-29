@@ -2,15 +2,17 @@ package dev.project.backend.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="vital")
 public class Vital {
 
 	@Id
-	@GeneratedValue(generator = "vital_seq")
-	@SequenceGenerator(name = "vital_seq", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int vital_id;
 	private String dob;
 	private int bp;

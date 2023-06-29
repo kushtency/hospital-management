@@ -1,5 +1,7 @@
 package dev.project.backend.entities;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -11,13 +13,25 @@ public class Patient {
     private Long patientID;
     @Column(name = "complaint")
     private String complaint;
-
+    
+    
     // mapping
     @OneToOne
     @JoinColumn(name = "user_id")
     User userPatient;
+    
+    @OneToMany
+    private List<PatientRecord> patientRecords;
 
-    public Patient() {}
+    public List<PatientRecord> getPatientRecords() {
+		return patientRecords;
+	}
+
+	public void setPatientRecords(List<PatientRecord> patientRecords) {
+		this.patientRecords = patientRecords;
+	}
+
+	public Patient() {}
 
     public Patient(String complaint) {
         this.complaint = complaint;
