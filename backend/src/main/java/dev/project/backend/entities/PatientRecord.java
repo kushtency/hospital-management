@@ -2,13 +2,7 @@ package dev.project.backend.entities;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -17,31 +11,31 @@ public class PatientRecord {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int record_id;
-	@OneToMany
+	@Column(name = "record_id")
+	private int recordID;
+	@OneToMany(mappedBy = "vitalRecord", cascade = CascadeType.ALL)
 	private List<Vital> vitalList;
-	@OneToMany
+	@OneToMany(mappedBy = "medicationRecord", cascade = CascadeType.ALL)
 	private List<Medication> medicationList;
-	@OneToMany
+	@OneToMany(mappedBy = "problemRecord", cascade = CascadeType.ALL)
 	private List<Problems> problemsList;
 	@OneToOne
-	private Physician physician;
-	
-	
-	public Physician getPhysician() {
-		return physician;
+	@JoinColumn(name = "patient_id")
+	private Patient recordForPatient;
+
+
+	public Patient getPatient() {
+		return recordForPatient;
+	}
+	public void setPatient(Patient recordForPatient) {
+		this.recordForPatient = recordForPatient;
+	}
+	public int getRecordID() {
+		return recordID;
 	}
 
-	public void setPhysician(Physician physician) {
-		this.physician = physician;
-	}
-
-	public int getRecord_id() {
-		return record_id;
-	}
-
-	public void setRecord_id(int record_id) {
-		this.record_id = record_id;
+	public void setRecordID(int recordID) {
+		this.recordID = recordID;
 	}
 
 	public List<Vital> getVitalList() {

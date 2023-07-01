@@ -1,11 +1,6 @@
 package dev.project.backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="problems")
@@ -13,17 +8,23 @@ public class Problems {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int problem_id;
+	@Column(name = "problem_id")
+	private int problemID;
 	
 	private String name;
 	private String status;
 	private String startDate;
+
+	// mapping
+	@ManyToOne
+	@JoinColumn(name = "record_id")
+	PatientRecord problemRecord;
 	
-	public int getProblem_id() {
-		return problem_id;
+	public int getProblemID() {
+		return problemID;
 	}
-	public void setProblem_id(int problem_id) {
-		this.problem_id = problem_id;
+	public void setProblem_id(int problemID) {
+		this.problemID = problemID;
 	}
 	public String getName() {
 		return name;

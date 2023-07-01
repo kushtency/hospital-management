@@ -1,11 +1,6 @@
 package dev.project.backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="vital")
@@ -13,7 +8,7 @@ public class Vital {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int vital_id;
+	private int vitalID;
 	private String dob;
 	private int bp;
 	private int hr;
@@ -24,12 +19,17 @@ public class Vital {
 	private int weight;
 	private double BMI;
 
-	public int getVital_id() {
-		return vital_id;
+	// mappings
+	@ManyToOne
+	@JoinColumn(name = "record_id")
+	PatientRecord vitalRecord;
+
+	public int getVitalID() {
+		return vitalID;
 	}
 
-	public void setVital_id(int vital_id) {
-		this.vital_id = vital_id;
+	public void setVitalID(int vitalID) {
+		this.vitalID = vitalID;
 	}
 
 	public String getDob() {
