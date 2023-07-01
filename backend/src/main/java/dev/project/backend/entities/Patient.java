@@ -22,7 +22,11 @@ public class Patient {
     
     @OneToMany(mappedBy = "recordForPatient", cascade = CascadeType.ALL)
     private List<PatientRecord> patientRecords;
-
+    
+    @ManyToMany
+    @JoinColumn(name = "physician_id")
+    List<Physician> listPhysician;
+    
     public List<PatientRecord> getPatientRecords() {
 		return patientRecords;
 	}
