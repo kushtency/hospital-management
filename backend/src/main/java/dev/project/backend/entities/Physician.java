@@ -1,5 +1,7 @@
 package dev.project.backend.entities;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -20,7 +22,10 @@ public class Physician {
     @OneToOne
     @JoinColumn(name = "user_id")
     User userPhysician;
-
+    
+    @ManyToMany(mappedBy = "listPhysician")
+    List<Patient> listPatient;
+    
     public Physician() {}
 
     public Physician(String title, String address, String speciality) {
