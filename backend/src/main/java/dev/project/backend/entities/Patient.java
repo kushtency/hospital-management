@@ -15,6 +15,14 @@ public class Patient {
     private String complaint;
     
     
+    //patient crud
+    //bmi crud
+    //medication crud
+    //problem crud
+    //vital crud
+    //patient link with doctor
+    
+    
     // mapping
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -27,7 +35,15 @@ public class Patient {
     @JoinColumn(name = "physician_id")
     List<Physician> listPhysician;
     
-    public List<PatientRecord> getPatientRecords() {
+//    public List<Physician> getListPhysician() {
+//		return listPhysician;
+//	}
+//
+//	public void setListPhysician(List<Physician> listPhysician) {
+//		this.listPhysician = listPhysician;
+//	}
+
+	public List<PatientRecord> getPatientRecords() {
 		return patientRecords;
 	}
 
@@ -36,8 +52,14 @@ public class Patient {
 	}
 
 	public Patient() {}
+	
+    @Override
+	public String toString() {
+		return "Patient [patientID=" + patientID + ", complaint=" + complaint + ", userPatient=" + userPatient
+				+ ", patientRecords=" + patientRecords + ", listPhysician=" + listPhysician + "]";
+	}
 
-    public Patient(String complaint) {
+	public Patient(String complaint) {
         this.complaint = complaint;
     }
 

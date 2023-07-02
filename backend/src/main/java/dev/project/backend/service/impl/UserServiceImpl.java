@@ -19,6 +19,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -62,6 +64,7 @@ public class UserServiceImpl implements UserService {
             }else{
                 Physician phy = user.getPhysician();
                 phy.setUserPhysician(createdUser);
+                phy.setListPatient(new ArrayList<>());
                 physicianRepository.save(phy);
             }
         } catch (Exception e){

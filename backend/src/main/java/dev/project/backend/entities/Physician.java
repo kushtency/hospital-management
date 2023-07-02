@@ -26,7 +26,21 @@ public class Physician {
     @ManyToMany(mappedBy = "listPhysician")
     List<Patient> listPatient;
     
-    public Physician() {}
+    @Override
+	public String toString() {
+		return "Physician [physicianID=" + physicianID + ", title=" + title + ", address=" + address + ", speciality="
+				+ speciality + ", userPhysician=" + userPhysician + ", listPatient=" + listPatient + "]";
+	}
+
+	public List<Patient> getListPatient() {
+		return listPatient;
+	}
+
+	public void setListPatient(List<Patient> listPatient) {
+		this.listPatient = listPatient;
+	}
+
+	public Physician() {}
 
     public Physician(String title, String address, String speciality) {
         this.title = title;
