@@ -13,3 +13,7 @@ body {
 .btn:hover {
     text-decoration: underline;
 }
+
+.window {
+    overflow-x: hidden;
+}

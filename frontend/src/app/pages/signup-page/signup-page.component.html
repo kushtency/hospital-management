@@ -1,1 +1,50 @@
-<p>signup-page works!</p>
+<main class="{{ this.styles.apply.window }} window">
+  <form [formGroup]="signupForm" class="{{ this.styles.apply.form_container }}" (ngSubmit)="signupHandler()">
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="emailID">Email ID</label>
+      <input
+        type="email"
+        formControlName="emailID"
+        placeholder="Email ID..."
+        class="{{ this.styles.apply.form_input }}"
+      />
+    </div>
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        formControlName="firstName"
+        placeholder="First Name..."
+        class="{{ this.styles.apply.form_input }}"
+      />
+    </div>
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        formControlName="lastName"
+        placeholder="Last Name..."
+        class="{{ this.styles.apply.form_input }}"
+      />
+    </div>
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Enter Password..."
+        class="{{ this.styles.apply.form_input }}"
+      />
+    </div>
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="sex">Sex</label>
+      <select title="Sex" formControlName="sex">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+    <button type="submit" class="{{ this.styles.apply.button }}">
+      Sign up
+    </button>
+  </form>
+</main>
