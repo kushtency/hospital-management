@@ -1,1 +1,27 @@
-<p>login-page works!</p>
+<main class="{{ this.styles.apply.window }} window">
+    <form [formGroup]="signinForm" class="{{ this.styles.apply.form_container }}" (ngSubmit)="signinHandler()">
+        <div class="{{ this.styles.apply.form_div }}">
+            <label for="emailID">Email ID</label>
+            <input type="email" formControlName="emailID" placeholder="Email ID..."
+                class="{{ this.styles.apply.form_input }}" />
+        </div>
+        <br>
+        <div class="{{ this.styles.apply.form_div }}">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password" placeholder="Enter Password..."
+                class="{{ this.styles.apply.form_input }}" />
+        </div>
+        <br>
+        <div class="{{ this.styles.apply.form_div }}">
+            <label for="user">Patient/Physician</label>
+            <select formControlName="role" class="{{ this.styles.apply.form_input }}">
+                <option value="physician">Physician</option>
+                <option value="patient">Patient</option>
+            </select>
+        </div>
+        <br>
+        <button type="submit" class="{{ this.styles.apply.button }}">
+            Sign In
+        </button>
+    </form>
+</main>
