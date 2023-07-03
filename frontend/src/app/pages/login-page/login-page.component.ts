@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { RegisterApiService } from 'src/app/api/register-api.service';
 import { ExpressionService } from 'src/app/styles/expression.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ExpressionService } from 'src/app/styles/expression.service';
 })
 export class LoginPageComponent {
   signinForm !: FormGroup;
-  constructor(private formBuilder: FormBuilder, public styles: ExpressionService) {}
+  constructor(private formBuilder: FormBuilder, public styles: ExpressionService, private login:RegisterApiService) {}
   ngOnInit(){
     this.signinForm = this.formBuilder.group({
       emailID: [''],
@@ -18,6 +19,12 @@ export class LoginPageComponent {
     });
   }
   signinHandler() {
-    console.log(this.signinForm.value)
+    // console.log(this.signinForm.value)
+    this.login.login(this.signinForm.value).subscribe({
+      next:function(val){
+        console.log(val);
+      },
+      error:(err)=>{console.log(err);}
+    });
   }
 }
