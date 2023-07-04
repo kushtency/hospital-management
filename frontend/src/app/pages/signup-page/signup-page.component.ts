@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ExpressionService } from 'src/app/styles/expression.service';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup-page',
   templateUrl: './signup-page.component.html',
-  styleUrls: ['./signup-page.component.css']
+  styleUrls: ['./signup-page.component.css'],
 })
-
 export class SignupPageComponent {
 
   firstPage = false;
@@ -19,56 +18,65 @@ export class SignupPageComponent {
   signupForm !: FormGroup;
   physicianForm !: FormGroup;
   patientForm !: FormGroup;
-  constructor(private formBuilder: FormBuilder, public styles: ExpressionService,private httpClient: HttpClient) {}
-  ngOnInit(){
+
+  constructor(
+    private formBuilder: FormBuilder,
+    public styles: ExpressionService,
+    private httpClient: HttpClient
+  ) {}
+
+  ngOnInit() {
     this.signupForm = this.formBuilder.group({
       emailID: [''],
       firstName: [''],
       lastName: [''],
       password: [''],
-      role:[''],
-      sex: ['']
+      role: [''],
+      sex: [''],
     });
     this.physicianForm = this.formBuilder.group({
-      complaint:['']
-    })
+      complaint: [''],
+    });
     this.patientForm = this.formBuilder.group({
-      title:[''],
-      address:[''],
-      speciality:['']
-    })
+      title: [''],
+      address: [''],
+      speciality: [''],
+    });
   }
 
-  next(){
-    if(this.step==1){
-          this.firstPage = true;
-          if (this.signupForm.invalid) { return  }
-          if(this.signupForm.value.role === "patient")
-          this.step++
-          if(this.signupForm.value.role === "physician")
-          this.step+=2;
-    }
-    if(this.step==2){
-        this.secondPagePatient = true;
-        this.firstPage = false;
-        if (this.patientForm.invalid) { return }
-            // this.step++;
-    }
-    if(this.step==3){
-        this.secondPagePhysician = true;
-        this.firstPage = false;
-        if(this.physicianForm.invalid){return}
-        // this.step++;
+  next() {
+    if (this.step == 1) {
+      this.firstPage = true;
+      if (this.signupForm.invalid) {
+        return;
       }
+      if (this.signupForm.value.role === 'patient') this.step++;
+      if (this.signupForm.value.role === 'physician') this.step += 2;
+    }
+    if (this.step == 2) {
+      this.secondPagePatient = true;
+      this.firstPage = false;
+      if (this.patientForm.invalid) {
+        return;
+      }
+      // this.step++;
+    }
+    if (this.step == 3) {
+      this.secondPagePhysician = true;
+      this.firstPage = false;
+      if (this.physicianForm.invalid) {
+        return;
+      }
+      // this.step++;
+    }
   }
-  previous(){
-    this.step--
-    if(this.step==2){
+  previous() {
+    this.step--;
+    if (this.step == 2) {
       this.step--;
       this.secondPagePatient = false;
       this.secondPagePhysician = false;
-    }
-    else if(this.step==1){
+    } else if (this.step == 1) {
       this.secondPagePatient = false;
       this.secondPagePhysician = false;
     }
@@ -76,10 +84,10 @@ export class SignupPageComponent {
 
   signupHandler() {
     let data = {
-      "user":this.signupForm.value,
-      "physician":this.physicianForm.value,
-      "patient":this.patientForm.value,
-    }
+      user: this.signupForm.value,
+      physician: this.physicianForm.value,
+      patient: this.patientForm.value,
+    };
     console.log(data);
 
     // this.httpClient.post('localhost:8080/api/public/register/', this.signupForm.value).subscribe({
@@ -87,5 +95,4 @@ export class SignupPageComponent {
     //   error: (error) => console.log(error),
     // });
   }
-
 }
