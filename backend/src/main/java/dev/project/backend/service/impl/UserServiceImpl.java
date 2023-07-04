@@ -64,7 +64,6 @@ public class UserServiceImpl implements UserService {
             }else{
                 Physician phy = user.getPhysician();
                 phy.setUserPhysician(createdUser);
-                phy.setListPatient(new ArrayList<>());
                 physicianRepository.save(phy);
             }
         } catch (Exception e){

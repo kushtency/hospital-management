@@ -1,6 +1,7 @@
 package dev.project.backend.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,20 +23,28 @@ public class PhysicianServiceImpl implements PhysicianService{
 	public void addPatient(Patient patient, Long physicianID) {
 		
 		Physician physician = physicianRepository.findById(physicianID).orElse(null);
-		
+
+//		System.out.println("Patient is  : "+ patient);
+		assert physician != null;
+		physician.addPatientInList(patient);
+		patient.addPhysicianInList(physician);
+//		System.out.println("Physician is : "+ physician);
+		physicianRepository.save(physician);
+		patientRepository.save(patient);
 //		System.out.println(patient);
-		List<Patient> listPatient = physician.getListPatient();
-		listPatient.add(patient);
-		physician.setListPatient(listPatient);
-		
+//		List<Patient> listPatient = physician.getListPatient();
+//		listPatient.add(patient);
+//		physician.setListPatient(listPatient);
+//		physicianRepository.save(physician);
+//		System.out.println(physician);
 		
 		
 //		List<Physician> listPhysicians = patient.getListPhysician();
 //		listPhysicians.add(physician);
 //		patient.setListPhysician(listPhysicians);
 //		System.out.println(patient);
-		
-		System.out.println(physician.getListPatient());
+		Set<Patient> p = physician.getListPatient();
+//		System.out.println(physician.getListPatient());
 		
 //		for(Patient pt:physician.getListPatient()) {
 //			System.out.println(pt);

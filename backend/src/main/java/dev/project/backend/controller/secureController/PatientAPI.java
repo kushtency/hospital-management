@@ -1,5 +1,6 @@
 package dev.project.backend.controller.secureController;
 
+import dev.project.backend.entities.Physician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.http.ResponseEntity;
@@ -63,6 +64,14 @@ public class PatientAPI {
 		res.put("details", patient);
 		return ResponseEntity.ok(res);
 		
+	}
+
+	@GetMapping("physician-list/{patientID}")
+	public ResponseEntity<Map<String, Object>> list(@PathVariable Long patientID){
+		Map<String, Object> res = new HashMap<>();
+		List<Physician> ls = patientService.getPhysicianList(patientID);
+		res.put("list", ls);
+		return ResponseEntity.ok(res);
 	}
     
     

@@ -1,7 +1,11 @@
 package dev.project.backend.entities;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -22,9 +26,10 @@ public class Physician {
     @OneToOne
     @JoinColumn(name = "user_id")
     User userPhysician;
-    
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "listPhysician")
-    List<Patient> listPatient;
+    Set<Patient> listPatient = new HashSet<>();
     
     @Override
 	public String toString() {
@@ -32,11 +37,11 @@ public class Physician {
 				+ speciality + ", userPhysician=" + userPhysician + ", listPatient=" + listPatient + "]";
 	}
 
-	public List<Patient> getListPatient() {
+	public Set<Patient> getListPatient() {
 		return listPatient;
 	}
 
-	public void setListPatient(List<Patient> listPatient) {
+	public void setListPatient(Set<Patient> listPatient) {
 		this.listPatient = listPatient;
 	}
 
@@ -75,4 +80,6 @@ public class Physician {
     public void setUserPhysician(User userPhysician) {
         this.userPhysician = userPhysician;
     }
+
+    public void addPatientInList(Patient patient){ this.listPatient.add(patient); }
 }
