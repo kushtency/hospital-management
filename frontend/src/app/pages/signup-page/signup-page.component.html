@@ -49,7 +49,7 @@
   </fieldset>
 
   <fieldset *ngIf="step == 2">
-    <form [formGroup]="physicianForm" class="{{ this.styles.apply.form_container }}">
+    <form [formGroup]="patientForm" class="{{ this.styles.apply.form_container }}">
       <div class="{{ this.styles.apply.form_div }}">
         <label for="complaint">Complaint</label>
         <input type="text" formControlName="complaint" placeholder="Complaint..."
@@ -67,7 +67,7 @@
   </fieldset>
 
   <fieldset *ngIf="step == 3">
-    <form [formGroup]="patientForm" class="{{ this.styles.apply.form_container }}">
+    <form [formGroup]="physicianForm" class="{{ this.styles.apply.form_container }}">
       <div class="{{ this.styles.apply.form_div }}">
         <label for="title">Title</label>
         <input type="text" formControlName="title" placeholder="Title..." class="{{ this.styles.apply.form_input }}" />
