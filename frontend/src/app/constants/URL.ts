@@ -1,3 +1,5 @@
-const PUBLIC_API = 'http://localhost:8080/api/public/'
+const API_ENDPOINT = 'http://localhost:8080';
 
-export {PUBLIC_API};
+const PUBLIC_API = `${API_ENDPOINT}/api/public/`;
+
+export { PUBLIC_API };

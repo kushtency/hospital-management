@@ -1,6 +1,5 @@
-<main class="{{ this.styles.apply.window }} window">
-  <fieldset *ngIf="step == 1">
-    <form [formGroup]="signupForm" class="{{ this.styles.apply.form_container }}">
+<main class="{{ this.styles.apply.window }}">
+    <form *ngIf="step == 1" [formGroup]="signupForm" class="{{ this.styles.apply.form_container }}">
       <div class="{{ this.styles.apply.form_div }}">
         <label for="emailID">Email ID</label>
         <input type="email" formControlName="emailID" placeholder="Email ID..."
@@ -34,8 +33,8 @@
       </div>
       <br>
       <div class="{{ this.styles.apply.form_div }}">
-        <label for="user">Patient/Physician</label>
-        <select formControlName="role" class="{{ this.styles.apply.form_input }}">
+        <label for="user">role</label>
+        <select title="role" formControlName="role" class="{{ this.styles.apply.form_input }}">
           <option value="physician">Physician</option>
           <option value="patient">Patient</option>
         </select>
@@ -46,10 +45,8 @@
           Sign up
         </button> -->
     </form>
-  </fieldset>
 
-  <fieldset *ngIf="step == 2">
-    <form [formGroup]="patientForm" class="{{ this.styles.apply.form_container }}">
+    <form *ngIf="step == 2" [formGroup]="patientForm" class="{{ this.styles.apply.form_container }}">
       <div class="{{ this.styles.apply.form_div }}">
         <label for="complaint">Complaint</label>
         <input type="text" formControlName="complaint" placeholder="Complaint..."
@@ -64,10 +61,8 @@
           Sign up
         </button> -->
     </form>
-  </fieldset>
 
-  <fieldset *ngIf="step == 3">
-    <form [formGroup]="physicianForm" class="{{ this.styles.apply.form_container }}">
+    <form *ngIf="step == 3" [formGroup]="physicianForm" class="{{ this.styles.apply.form_container }}">
       <div class="{{ this.styles.apply.form_div }}">
         <label for="title">Title</label>
         <input type="text" formControlName="title" placeholder="Title..." class="{{ this.styles.apply.form_input }}" />
@@ -93,7 +88,5 @@
           Sign up
         </button> -->
     </form>
-  </fieldset>
-
 
 </main>
