@@ -1,68 +1,87 @@
 <main class="{{ this.styles.apply.window }}">
-    <form *ngIf="step == 1" [formGroup]="signupForm" class="{{ this.styles.apply.form_container }}">
-      <div class="{{ this.styles.apply.form_div }}">
-        <label for="emailID">Email ID</label>
-        <input type="email" formControlName="emailID" placeholder="Email ID..."
-          class="{{ this.styles.apply.form_input }}" />
-      </div>
-      <br>
-      <div class="{{ this.styles.apply.form_div }}">
-        <label for="firstName">First Name</label>
-        <input type="text" formControlName="firstName" placeholder="First Name..."
-          class="{{ this.styles.apply.form_input }}" />
-      </div>
-      <br>
-      <div class="{{ this.styles.apply.form_div }}">
-        <label for="lastName">Last Name</label>
-        <input type="text" formControlName="lastName" placeholder="Last Name..."
-          class="{{ this.styles.apply.form_input }}" />
-      </div>
-      <br>
-      <div class="{{ this.styles.apply.form_div }}">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" placeholder="Enter Password..."
-          class="{{ this.styles.apply.form_input }}" />
-      </div>
-      <br>
-      <div class="{{ this.styles.apply.form_div }}">
-        <label for="sex">Sex</label>
-        <select title="Sex" formControlName="sex" class="{{ this.styles.apply.form_input }}">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-      </div>
-      <br>
-      <div class="{{ this.styles.apply.form_div }}">
+  <form *ngIf="step == 1" [formGroup]="signupForm" class="{{ this.styles.apply.form_container }}">
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="emailID">Email ID</label>
+      <input type="email" formControlName="emailID" placeholder="Email ID..."
+        class="{{ this.styles.apply.form_input }}" />
+    </div>
+    <br>
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="firstName">First Name</label>
+      <input type="text" formControlName="firstName" placeholder="First Name..."
+        class="{{ this.styles.apply.form_input }}" />
+    </div>
+    <br>
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="lastName">Last Name</label>
+      <input type="text" formControlName="lastName" placeholder="Last Name..."
+        class="{{ this.styles.apply.form_input }}" />
+    </div>
+    <br>
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="password">Password</label>
+      <input type="password" formControlName="password" placeholder="Enter Password..."
+        class="{{ this.styles.apply.form_input }}" />
+    </div>
+    <br>
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="sex">Sex</label>
+      <select title="Sex" formControlName="sex" class="{{ this.styles.apply.form_input }}">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+    <br>
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="complaint">Complaint</label>
+      <input type="text" formControlName="complaint" placeholder="Complaint..."
+        class="{{ this.styles.apply.form_input }}" />
+    </div>
+    <br>
+    <input (click)="signupHandler()" type="button" name="next" class="{{ this.styles.apply.button }}" value="Submit" />
+    <!-- <div class="{{ this.styles.apply.form_div }}">
         <label for="user">role</label>
         <select title="role" formControlName="role" class="{{ this.styles.apply.form_input }}">
           <option value="physician">Physician</option>
           <option value="patient">Patient</option>
         </select>
       </div>
-      <br>
-      <input (click)="next()" type="button" name="next" class="{{ this.styles.apply.button }}" value="Next" />
-      <!-- <button type="submit" class="{{ this.styles.apply.button }}">
+      <br> -->
+    <!-- <input (click)="next()" type="button" name="next" class="{{ this.styles.apply.button }}" value="Next" /> -->
+    <!-- <button type="submit" class="{{ this.styles.apply.button }}">
           Sign up
         </button> -->
-    </form>
+  </form>
+  <div *ngIf="step == 2" class="col-md-6">
+    <form [formGroup]="successForm" (ngSubmit)="onSubmit()">
 
-    <form *ngIf="step == 2" [formGroup]="patientForm" class="{{ this.styles.apply.form_container }}">
-      <div class="{{ this.styles.apply.form_div }}">
-        <label for="complaint">Complaint</label>
-        <input type="text" formControlName="complaint" placeholder="Complaint..."
-          class="{{ this.styles.apply.form_input }}" />
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="alert alert-success">
+            <strong>Registration Success!</strong>
+          </p>
+        </div>
       </div>
       <br>
-      <input (click)="signupHandler()" type="button" name="next" class="{{ this.styles.apply.button }}"
-        value="Submit" />
-      <input (click)="previous()" type="button" name="previous" class="{{ this.styles.apply.button }}"
-        value="Previous" />
-      <!-- <button type="submit" class="{{ this.styles.apply.button }}">
+      <button (click)="onSubmit()" class="btn btn-success">Please click here to login!.</button>
+    </form>
+  </div>
+
+  <!-- <form *ngIf="step == 2" [formGroup]="patientForm" class="{{ this.styles.apply.form_container }}"> -->
+  <!-- <div class="{{ this.styles.apply.form_div }}">
+      <label for="complaint">Complaint</label>
+      <input type="text" formControlName="complaint" placeholder="Complaint..."
+        class="{{ this.styles.apply.form_input }}" />
+    </div>
+    <br>
+    <input (click)="signupHandler()" type="button" name="next" class="{{ this.styles.apply.button }}" value="Submit" /> -->
+  <!-- <input (click)="previous()" type="button" name="previous" class="{{ this.styles.apply.button }}" value="Previous" /> -->
+  <!-- <button type="submit" class="{{ this.styles.apply.button }}">
           Sign up
         </button> -->
-    </form>
+  <!-- </form> -->
 
-    <form *ngIf="step == 3" [formGroup]="physicianForm" class="{{ this.styles.apply.form_container }}">
+  <!-- <form *ngIf="step == 3" [formGroup]="physicianForm" class="{{ this.styles.apply.form_container }}">
       <div class="{{ this.styles.apply.form_div }}">
         <label for="title">Title</label>
         <input type="text" formControlName="title" placeholder="Title..." class="{{ this.styles.apply.form_input }}" />
@@ -83,10 +102,10 @@
       <input (click)="signupHandler()" type="button" name="Submit" class="{{ this.styles.apply.button }}"
         value="Submit" />
       <input (click)="previous()" type="button" name="previous" class="{{ this.styles.apply.button }}"
-        value="Previous" />
-      <!-- <button type="submit" class="{{ this.styles.apply.button }}">
+        value="Previous" /> -->
+  <!-- <button type="submit" class="{{ this.styles.apply.button }}">
           Sign up
         </button> -->
-    </form>
+  <!-- </form> -->
 
 </main>
