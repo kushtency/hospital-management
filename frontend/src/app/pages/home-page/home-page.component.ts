@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RegisterApiService } from '../../api/register-api.service';
+import { Router } from '@angular/router';
+import { ExpressionService } from 'src/app/styles/expression.service';
 
 @Component({
   selector: 'app-home-page',
@@ -7,8 +8,11 @@ import { RegisterApiService } from '../../api/register-api.service';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent {
-  constructor(private registerAPI: RegisterApiService) {}
+  constructor(public styles: ExpressionService, private router: Router) {}
 
   ngOnInit() {
+  }
+  public getStartedHandler() {
+    this.router.navigateByUrl("about");
   }
 }

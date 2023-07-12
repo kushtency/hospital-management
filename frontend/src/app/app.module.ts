@@ -10,6 +10,7 @@ import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer.component';
+import { AboutPageComponent } from './pages/about-page/about-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FooterComponent } from './components/footer/footer.component';
     HeaderComponent,
     LoginPageComponent,
     SignupPageComponent,
-    FooterComponent
+    FooterComponent,
+    AboutPageComponent
   ],
   imports: [
     BrowserModule,

@@ -4,8 +4,11 @@
 @tailwind utilities;
 
 body {
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(234,249,249,0.67) 0.1%, rgba(239,249,255,0.63) 90.1% );
+    background: #70e1f575;
+    background: -webkit-linear-gradient(to bottom right, #ffd194, #70e1f5); 
+    background: linear-gradient(to bottom right, #ffd194, #70e1f5); 
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 .btn:active {
