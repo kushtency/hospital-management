@@ -10,6 +10,9 @@ import { ExpressionService } from 'src/app/styles/expression.service';
 })
 export class LoginPageComponent {
   signinForm !: FormGroup;
+  showError : Boolean = false;
+  errorMsg ?: string;
+
   constructor(private formBuilder: FormBuilder, public styles: ExpressionService, private login:RegisterApiService) {}
   ngOnInit(){
     this.signinForm = this.formBuilder.group({
@@ -19,8 +22,12 @@ export class LoginPageComponent {
     console.log(this.signinForm);
   }
   signinHandler() {
-    console.log(this.signinForm);
-    console.log(this.signinForm.get("emailID")); 
+    if(this.EmailID.value === '' && this.Password.value === ''){
+      this.showError = true;
+      this.errorMsg = "*please enter all the details";
+      return;
+    }
+    this.showError = false;
     this.login.login(this.signinForm.value).subscribe({
       next:function(val){
         console.log(val);

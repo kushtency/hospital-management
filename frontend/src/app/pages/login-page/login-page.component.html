@@ -15,7 +15,10 @@
           required
           maxlength="255"
         />
-        <span *ngIf="EmailID.value === '' && EmailID.touched" class="">
+        <span
+          *ngIf="EmailID.value === '' && EmailID.touched"
+          class="{{ styles.apply.errorMsg }}"
+        >
           *email id is required
         </span>
         <!-- <span *ngIf="EmailID.touched === true && EmailID.errors?.['maxLength']">
@@ -26,15 +29,27 @@
     <br />
     <div class="{{ this.styles.apply.form_div }}">
       <label for="password">Password</label>
-      <input
-        type="password"
-        formControlName="password"
-        placeholder="Enter Password..."
-        class="{{ this.styles.apply.form_input }}"
-        required
-      />
+      <div class="flex flex-col">
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Enter Password..."
+          class="{{ this.styles.apply.form_input }}"
+          required
+        />
+        <span
+          *ngIf="Password.value === '' && Password.touched"
+          class="{{ styles.apply.errorMsg }}"
+        >
+          *Password is required
+        </span>
+      </div>
     </div>
     <br />
     <button type="submit" class="{{ this.styles.apply.button }}">Login</button>
+    <br />
+    <span *ngIf="showError" class="{{ this.styles.apply.errorMsg }} ">{{
+      this.errorMsg
+    }}</span>
   </form>
 </main>

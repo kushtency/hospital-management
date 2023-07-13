@@ -14,6 +14,7 @@ export class ExpressionService {
     h1: "text-6xl font-bold ",
     h2: "text-3xl font-bold",
     h3: "text-2xl font-regular",
+    errorMsg: "text-red-600 font-regular text-sm",
   }
   constructor() { }
 }
