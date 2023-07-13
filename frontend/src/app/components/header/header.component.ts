@@ -11,24 +11,34 @@ import { user } from 'src/app/types/TYPE';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  
   constructor(
     private router: Router,
     public styles: ExpressionService,
-    public states: StatesService,
     private userService: UserAuthService,
+    private states: StatesService,
   ) {}
 
-  get LoggedIn(): boolean {
-    return this.states.isloggedIn();
+
+  ngOnInit() {
+    if(this.userService.GetUser){
+      this.states.isloggedIn.set(true);
+    }
   }
-  
-  get UserName(): string{
-    const user: user = this.userService.GetUser
+
+  get LoggedIn(): boolean {
+    return this.states?.isloggedIn();
+  }
+
+  get UserName(): string {
+    const user: user = this.userService.GetUser;
     return user.name;
   }
 
   public logoutHandler() {
+    // this.states.isloggedIn.set(false);
     this.states.isloggedIn.set(false);
     this.userService.removeUser();
+    this.router.navigateByUrl('');
   }
 }

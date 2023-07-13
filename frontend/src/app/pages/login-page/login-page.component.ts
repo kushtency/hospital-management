@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegisterApiService } from 'src/app/api/register-api.service';
 import { UserAuthService } from 'src/app/service/user-auth.service';
 import { StatesService } from 'src/app/store/states.service';
@@ -27,6 +28,7 @@ export class LoginPageComponent {
     private login: RegisterApiService,
     private userService: UserAuthService,
     private states: StatesService,
+    private router: Router,
   ) {}
   ngOnInit() {
     this.signinForm = this.formBuilder.group({
@@ -41,13 +43,13 @@ export class LoginPageComponent {
       ]),
     });
     console.log(this.signinForm);
-  }
-  signinHandler() {
-
     // if user is already logged in redirect to the dashboard
     if(this.userService.GetUser){
-      return;
+      this.router.navigateByUrl("patient/dashboard");
     }
+  }
+
+  signinHandler() {
     this.EmailID.markAsTouched();
     this.Password.markAsTouched();
     if (this.EmailID.value === '' || this.Password.value === '') {
@@ -75,7 +77,8 @@ export class LoginPageComponent {
         token: res.token
       }
       this.userService.StoreUser(user);
-      this.states.isloggedIn.set(true);
+      this.states.setIsLoggedIn(true);
+      this.router.navigateByUrl('patient/dashboard');
     }
   }
 
