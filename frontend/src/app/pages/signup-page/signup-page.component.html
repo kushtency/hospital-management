@@ -2,40 +2,81 @@
   <form *ngIf="step == 1" [formGroup]="signupForm" class="{{ this.styles.apply.form_container }}">
     <div class="{{ this.styles.apply.form_div }}">
       <label for="emailID">Email ID</label>
-      <input type="email" formControlName="emailID" placeholder="Email ID..."
-        class="{{ this.styles.apply.form_input }}" />
+      <div class="flex flex-col">
+        <input type="email" formControlName="emailID" placeholder="Email ID..."
+          class="{{ this.styles.apply.form_input }}" required maxlength="255" email />
+        <span *ngIf="EmailID.value === '' && EmailID.touched" class="">
+          *Email id is required
+        </span>
+      </div>
     </div>
     <br>
     <div class="{{ this.styles.apply.form_div }}">
       <label for="firstName">First Name</label>
-      <input type="text" formControlName="firstName" placeholder="First Name..."
-        class="{{ this.styles.apply.form_input }}" />
+      <div class="flex flex-col">
+        <input type="text" formControlName="firstName" placeholder="First Name..."
+          class="{{ this.styles.apply.form_input }}" required maxlength="255" />
+        <span *ngIf="First.value === '' && First.touched" class="">
+          *First Name is required
+        </span>
+      </div>
     </div>
     <br>
     <div class="{{ this.styles.apply.form_div }}">
-      <label for="lastName">Last Name</label>
-      <input type="text" formControlName="lastName" placeholder="Last Name..."
-        class="{{ this.styles.apply.form_input }}" />
+      <label for="lastName">First Name</label>
+      <div class="flex flex-col">
+        <input type="text" formControlName="lastName" placeholder="Last Name..."
+          class="{{ this.styles.apply.form_input }}" required maxlength="255" />
+        <span *ngIf="Last.value === '' && Last.touched" class="">
+          *Last Name is required
+        </span>
+      </div>
     </div>
     <br>
     <div class="{{ this.styles.apply.form_div }}">
-      <label for="password">Password</label>
-      <input type="password" formControlName="password" placeholder="Enter Password..."
-        class="{{ this.styles.apply.form_input }}" />
+      <label for="password">First Name</label>
+      <div class="flex flex-col">
+        <input type="text" formControlName="password" placeholder="Enter Password..."
+          class="{{ this.styles.apply.form_input }}" required maxlength="255" />
+        <span *ngIf="Password.value === '' && Password.touched" class="">
+          *Password is required
+        </span>
+      </div>
     </div>
     <br>
     <div class="{{ this.styles.apply.form_div }}">
-      <label for="sex">Sex</label>
-      <select title="Sex" formControlName="sex" class="{{ this.styles.apply.form_input }}">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
+      <label for="sex">Gender</label>
+      <div class="flex flex-col">
+        <select title="Sex" formControlName="sex" class="{{ this.styles.apply.form_input }}">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <span *ngIf="Sex.value === '' && Sex.touched" class="">
+          *Sex is required
+        </span>
+      </div>
     </div>
     <br>
     <div class="{{ this.styles.apply.form_div }}">
       <label for="complaint">Complaint</label>
-      <input type="text" formControlName="complaint" placeholder="Complaint..."
-        class="{{ this.styles.apply.form_input }}" />
+      <div class="flex flex-col">
+        <input type="text" formControlName="complaint" placeholder="Complaint..."
+          class="{{ this.styles.apply.form_input }}" required maxlength="255" />
+        <span *ngIf="Complaint.value === '' && Complaint.touched" class="">
+          *Complaint is required
+        </span>
+      </div>
+    </div>
+    <br>
+    <div class="{{ this.styles.apply.form_div }}">
+      <label for="age">Age</label>
+      <div class="flex flex-col">
+        <input type="number" formControlName="age" placeholder="Age..." class="{{ this.styles.apply.form_input }}"
+          required min="1" max="150" />
+        <span *ngIf="(Age.value <= 0 || Age.value === '' || Age.value >= 110) && Age.touched" class="">
+          *Age is Invalid
+        </span>
+      </div>
     </div>
     <br>
     <input (click)="signupHandler()" type="button" name="next" class="{{ this.styles.apply.button }}" value="Submit" />
