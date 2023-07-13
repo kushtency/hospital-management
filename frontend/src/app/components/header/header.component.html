@@ -1,5 +1,17 @@
 <header class="sticky top-0">
-  <nav class="{{this.styles.apply.navbar}}">
+  <nav class="{{this.styles.apply.navbar}}" *ngIf="LoggedIn">
+    <div class="text-md flex justify-center items-center gap-5">
+        <a routerLink="/" class="text-xl">HIS</a>
+        <span>health records</span>
+        <span>doctors</span>
+        <span>slots</span>
+    </div>
+    <div class="flex gap-8">
+        <span>{{UserName}}</span>
+        <button (click)="logoutHandler()" class="{{this.styles.apply.button}}">logout</button>
+    </div>
+  </nav>
+  <nav class="{{this.styles.apply.navbar}}" *ngIf="!LoggedIn">
     <div class="text-md flex justify-center items-center gap-5">
         <a routerLink="/" class="text-xl">HIS</a>
         <span>services</span>

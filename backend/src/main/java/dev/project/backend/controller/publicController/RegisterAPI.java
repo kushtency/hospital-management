@@ -40,7 +40,7 @@ public class RegisterAPI {
         var res = new HashMap<String, Object>();
         User u = userService.getUser(loginCredentials.getEmailID());
         if(u != null){
-            UserDetails userDetails = new UserDetails(u.getName(), u.getEmailID(), u.getSex(), u.getRole());
+            UserDetails userDetails = new UserDetails(u.getName(), u.getEmailID(), u.getSex(), u.getRole(), u.getAge());
             String token = userService.loginUser(loginCredentials);
             Send.response.set("login successfully", 1);
             res.put("message", Send.response);

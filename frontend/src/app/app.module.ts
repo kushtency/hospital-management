@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
+import { PatientDashboardComponent } from './pages/patient-dashboard/patient-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
     LoginPageComponent,
     SignupPageComponent,
     FooterComponent,
-    AboutPageComponent
+    AboutPageComponent,
+    PatientDashboardComponent
   ],
   imports: [
     BrowserModule,
