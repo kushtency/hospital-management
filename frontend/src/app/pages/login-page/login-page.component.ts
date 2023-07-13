@@ -10,17 +10,27 @@ import { ExpressionService } from 'src/app/styles/expression.service';
 })
 export class LoginPageComponent {
   signinForm !: FormGroup;
+  showError : Boolean = false;
+  errorMsg ?: string;
+
   constructor(private formBuilder: FormBuilder, public styles: ExpressionService, private login:RegisterApiService) {}
   ngOnInit(){
     this.signinForm = this.formBuilder.group({
-      emailID: new FormControl('', [Validators.maxLength(255), Validators.required]),
+      emailID: new FormControl('', [Validators.maxLength(255), Validators.required, Validators.email]),
       password: new FormControl('', [Validators.maxLength(30), Validators.required]),
     });
     console.log(this.signinForm);
   }
   signinHandler() {
-    console.log(this.signinForm);
-    console.log(this.signinForm.get("emailID")); 
+
+    // if user is already logged in redirect to the dashboard
+    this.EmailID.markAsTouched(); this.Password.markAsTouched();
+    if(this.EmailID.value === '' || this.Password.value === ''){
+      this.showError = true;
+      this.errorMsg = "*please enter all the details";
+      return;
+    }
+    this.showError = false;
     this.login.login(this.signinForm.value).subscribe({
       next:function(val){
         console.log(val);
