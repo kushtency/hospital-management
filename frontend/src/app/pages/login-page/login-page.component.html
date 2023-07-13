@@ -14,12 +14,19 @@
           class="{{ this.styles.apply.form_input }}"
           required
           maxlength="255"
+          email
         />
         <span
-          *ngIf="EmailID.value === '' && EmailID.touched"
+          *ngIf="EmailID.value === '' && (EmailID.touched || EmailID.dirty)"
           class="{{ styles.apply.errorMsg }}"
         >
           *email id is required
+        </span>
+        <span
+          *ngIf="EmailID.errors?.['email'] && (EmailID.touched || EmailID.dirty)"
+          class="{{ styles.apply.errorMsg }}"
+        >
+          *email id is not valid
         </span>
         <!-- <span *ngIf="EmailID.touched === true && EmailID.errors?.['maxLength']">
             *exceeds maximum length

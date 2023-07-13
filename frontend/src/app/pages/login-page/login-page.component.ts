@@ -16,13 +16,16 @@ export class LoginPageComponent {
   constructor(private formBuilder: FormBuilder, public styles: ExpressionService, private login:RegisterApiService) {}
   ngOnInit(){
     this.signinForm = this.formBuilder.group({
-      emailID: new FormControl('', [Validators.maxLength(255), Validators.required]),
+      emailID: new FormControl('', [Validators.maxLength(255), Validators.required, Validators.email]),
       password: new FormControl('', [Validators.maxLength(30), Validators.required]),
     });
     console.log(this.signinForm);
   }
   signinHandler() {
-    if(this.EmailID.value === '' && this.Password.value === ''){
+
+    // if user is already logged in redirect to the dashboard
+    this.EmailID.markAsTouched(); this.Password.markAsTouched();
+    if(this.EmailID.value === '' || this.Password.value === ''){
       this.showError = true;
       this.errorMsg = "*please enter all the details";
       return;
