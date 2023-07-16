@@ -40,7 +40,7 @@ public class PatientAPI {
 //    }
 //    
 	@GetMapping("get-record/{patientID}")
-	public ResponseEntity<Map<String, Object>> setRecord(@PathVariable Long patientID){
+	public ResponseEntity<Map<String, Object>> getRecord(@PathVariable Long patientID){
 		
 		Map<String, Object> res = new HashMap<>();
 		Patient patient = patientService.getRecords(patientID);

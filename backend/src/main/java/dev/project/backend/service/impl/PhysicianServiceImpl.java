@@ -28,4 +28,21 @@ public class PhysicianServiceImpl implements PhysicianService{
 		physicianRepository.save(physician);
 		patientRepository.save(patient);
 	}
+
+	@Override
+	public Physician getRecord(Long physicianID) {
+		return physicianRepository.findById(physicianID).orElse(null);
+	}
+
+	@Override
+	public List<Physician> getPhysicianBySpeciality(String speciality) {
+		return physicianRepository.findBySpeciality(speciality);
+	}
+
+	@Override
+	public List<String> getSpeciality() {
+		return physicianRepository.getAllSpeciality();
+	}
+	
+	
 }
